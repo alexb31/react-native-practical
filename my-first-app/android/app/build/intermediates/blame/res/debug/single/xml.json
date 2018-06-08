@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\anthony\\Desktop\\Lab\\react-native-practical\\my-first-app\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml\\preferences.xml",
+        "source": "C:\\Users\\anthony\\.android\\build-cache\\22685c3f3182289a97d4576081d8eabcd609ba76\\output\\res\\xml\\preferences.xml"
+    },
+    {
         "merged": "C:\\Users\\alexa\\Desktop\\Lab\\react-native-practical\\my-first-app\\android\\app\\build\\intermediates\\res\\merged\\debug\\xml\\preferences.xml",
         "source": "C:\\Users\\alexa\\Desktop\\Lab\\react-native-practical\\my-first-app\\android\\app\\build\\intermediates\\exploded-aar\\com.facebook.react\\react-native\\0.55.4\\res\\xml\\preferences.xml"
     }
