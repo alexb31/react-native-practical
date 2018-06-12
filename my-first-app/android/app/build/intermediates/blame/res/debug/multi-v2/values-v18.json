@@ -4,15 +4,8 @@
             "outputFile": "C:\\Users\\anthony\\Desktop\\Lab\\react-native-practical\\my-first-app\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v18\\values-v18.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\anthony\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\b549304694fc5c4848a21f80b16eb3ed\\res\\values-v18\\values-v18.xml",
+                    "source": "C:\\Users\\anthony\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.3.1.aar\\eb8cf1f32081f65bef986f5633b4ac0d\\res\\values-v18\\values-v18.xml",
                     "from": {
-                        "startLines": "4",
-                        "startColumns": "4",
-                        "startOffsets": "280",
-                        "endColumns": "48",
-                        "endOffsets": "324"
-                    },
-                    "to": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
