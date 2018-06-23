@@ -4,8 +4,8 @@ import MapView from "react-native-maps";
 class PickLocation extends Component {
     state = {
         focusedLocation: {
-          latitude: 37.7900352,
-          longitude: -122.4013726,
+          latitude: 48.856614,
+          longitude: 2.3522219000000177,
           latitudeDelta: 0.0122,
           longitudeDelta:
             Dimensions.get("window").width /
@@ -17,6 +17,11 @@ class PickLocation extends Component {
 
       pickLocationHandler = event => {
         const coords = event.nativeEvent.coordinate;
+        this.map.animateToRegion({
+            ...this.state.focusedLocation,
+            latitude: coords.latitude,
+            longitude: coords.longitude
+        });
         this.setState(prevState => {
             return {
                 focusedLocation: {
@@ -26,6 +31,24 @@ class PickLocation extends Component {
                 },
                 locationChosen: true
             };
+        });
+      };
+
+      getLocationHandler = () => {
+          navigator.geolocation.getCurrentPosition(pos => {
+            const coordsEvent = {
+                nativeEvent: {
+                    coordinate: {
+                        latitude: pos.coords.latitude,
+                        longitude: pos.coords.longitude
+                    }
+                }
+            };
+            this.pickLocationHandler(coordsEvent);
+          }, 
+        err => {
+            console.log(err);
+            alert('Fetching Position Failed, please pick one manually!');
         })
       }
 
@@ -40,14 +63,14 @@ class PickLocation extends Component {
             <View style={styles.container}>
                 <MapView
                     initialRegion={this.state.focusedLocation}
-                    region={this.state.focusedLocation}
                     style={styles.map}
                     onPress={this.pickLocationHandler}
+                    ref={ref => this.map = ref}
                 >
                     {marker}
                 </MapView>
                 <View style={styles.button}>
-                <Button title="Locate Me" onPress={() => alert('click')}/>
+                <Button title="Locate Me" onPress={this.getLocationHandler}/>
                 </View>
             </View>
         );
@@ -61,7 +84,7 @@ const styles = StyleSheet.create({
     },
     map: {
         width: "100%",
-        height: 250
+        height: 250,
       },
     button: {
         margin: 8
