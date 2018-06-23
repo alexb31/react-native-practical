@@ -13,6 +13,7 @@ import com.reactnativenavigation.NavigationApplication;
 
 import com.oblador.vectoricons.VectorIconsPackage;  
 import com.airbnb.android.react.maps.MapsPackage;
+import com.imagepicker.ImagePickerPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -63,7 +64,8 @@ public class MainApplication extends NavigationApplication {
              // eg. new VectorIconsPackage()
              new VectorIconsPackage(),
              new MainReactPackage(),
-             new MapsPackage()
+             new MapsPackage(),
+             new ImagePickerPackage()
          );
      }
 
