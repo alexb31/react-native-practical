@@ -1,13 +1,23 @@
-import React, { Component } from 'react';
-import { View, Image, Text, Button, StyleSheet, TouchableOpacity, Platform, Dimensions } from 'react-native';
-import { connect } from 'react-redux';
-import { deletePlace } from '../../store/actions/index';
+import React, { Component } from "react";
+import {
+  View,
+  Image,
+  Text,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+  Platform,
+  Dimensions
+} from "react-native";
+import { connect } from "react-redux";
+import MapView from "react-native-maps";
 
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from "react-native-vector-icons/Ionicons";
+import { deletePlace } from "../../store/actions/index";
 
 class PlaceDetail extends Component {
   state = {
-    viewMode: Dimensions.get("window").height > 500 ? "portrait" : "landscape"
+    viewMode: "portrait"
   };
 
   constructor(props) {
@@ -15,23 +25,22 @@ class PlaceDetail extends Component {
     Dimensions.addEventListener("change", this.updateStyles);
   }
 
-  componentWillMount() {
-      Dimensions.removeEventListener("change", this.updateStyles);
+  componentWillUnmount() {
+    Dimensions.removeEventListener("change", this.updateStyles);
   }
 
-  updateStyles = (dims) => {
+  updateStyles = dims => {
     this.setState({
-        viewMode:
-          dims.window.height > 500 ? "portrait" : "landscape"
-      });
-  }
+      viewMode: dims.window.height > 500 ? "portrait" : "landscape"
+    });
+  };
 
-placeDeletedHandler = () => {
-  this.props.onDeletePlace(this.props.selectedPlace.key);
-  this.props.navigator.pop();
-}
+  placeDeletedHandler = () => {
+    this.props.onDeletePlace(this.props.selectedPlace.key);
+    this.props.navigator.pop();
+  };
 
-  render () {
+  render() {
     return (
       <View
         style={[
@@ -41,11 +50,28 @@ placeDeletedHandler = () => {
             : styles.landscapeContainer
         ]}
       >
-        <View style={styles.subContainer}>
-          <Image
-            source={this.props.selectedPlace.image}
-            style={styles.placeImage}
-          />
+        <View style={styles.placeDetailContainer}>
+          <View style={styles.subContainer}>
+            <Image
+              source={this.props.selectedPlace.image}
+              style={styles.placeImage}
+            />
+          </View>
+          <View style={styles.subContainer}>
+            <MapView
+              initialRegion={{
+                ...this.props.selectedPlace.location,
+                latitudeDelta: 0.0122,
+                longitudeDelta:
+                  Dimensions.get("window").width /
+                  Dimensions.get("window").height *
+                  0.0122
+              }}
+              style={styles.map}
+            >
+              <MapView.Marker coordinate={this.props.selectedPlace.location} />
+            </MapView>
+          </View>
         </View>
         <View style={styles.subContainer}>
           <View>
@@ -66,9 +92,9 @@ placeDeletedHandler = () => {
           </View>
         </View>
       </View>
-    )
-  };
-};
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -81,14 +107,20 @@ const styles = StyleSheet.create({
   landscapeContainer: {
     flexDirection: "row"
   },
+  placeDetailContainer: {
+    flex: 2
+  },
   placeImage: {
     width: "100%",
-    height: 200
+    height: "100%"
   },
   placeName: {
     fontWeight: "bold",
     textAlign: "center",
     fontSize: 28
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject
   },
   deleteButton: {
     alignItems: "center"
@@ -100,8 +132,8 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispatch => {
   return {
-    onDeletePlace: (key) => dispatch(deletePlace(key))
+    onDeletePlace: key => dispatch(deletePlace(key))
   };
 };
 
-export default connect (null, mapDispatchToProps)(PlaceDetail);
+export default connect(null, mapDispatchToProps)(PlaceDetail);
