@@ -12,12 +12,14 @@ export const tryAuth = (authData, authMode) => {
         url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=" + apiKey;
       }
       fetch(
-        apiUrl,
+        url,
         {
           method: "POST",
           body: JSON.stringify({
             email: authData.email,
             password: authData.password,
+            firstName: authData.firstName,
+            lastName: authData.lastName,
             returnSecureToken: true
           }),
           headers: {
@@ -26,14 +28,16 @@ export const tryAuth = (authData, authMode) => {
         }
       )
         .catch(err => {
-          console.log(err);
+          consoler.log("shit");
+          console.log("error: " + err);
           alert("Authentication failed, please try again!");
           dispatch(uiStopLoading());
         })
         .then(res => res.json())
         .then(parsedRes => {
-          dispatch(uiStopLoading());
+          console.log('success');
           console.log(parsedRes);
+          dispatch(uiStopLoading());
           if (!parsedRes.idToken) {
               alert("Authentication failed, please try again!");
           } else {

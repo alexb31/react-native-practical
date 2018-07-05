@@ -15,6 +15,27 @@ class AuthScreen extends Component {
         viewMode: Dimensions.get("window").height > 500 ? "portrait" : "landscape",
         authMode: "login",
         controls: {
+            firstName: {
+                value: "",
+                valid: false,
+                validationRules: {
+                    minLength: 2
+                },
+                touched: false
+            },
+            lastName: {
+                value: "",
+                valid: false,
+                validationRules: {
+                    minLength: 2
+                },
+                touched: false
+            },
+            gender: {
+                value: "MALE",
+                valid: true,
+                touched: false
+            },
             email: {
                 value: "",
                 valid: false,
@@ -68,6 +89,9 @@ class AuthScreen extends Component {
 
     authHandler = () => {
         const authData = {
+            firstName: this.state.controls.firstName.value,
+            lastName: this.state.controls.lastName.value,
+            gender: this.state.controls.gender.value,
             email: this.state.controls.email.value,
             password: this.state.controls.password.value,
         };
@@ -123,6 +147,7 @@ class AuthScreen extends Component {
     render() {
         
         let headingText = null;
+        let nameControl = null;
         let confirmPasswordControl = null;
         let submitButton = (
             <ButtonBackground 
@@ -146,6 +171,31 @@ class AuthScreen extends Component {
             );
         }
         if (this.state.authMode === "signup") {
+
+            nameControl = (
+                <View style={this.state.viewMode === "portrait" ? styles.portraitPasswordWrapper : styles.landscapePasswordWrapper}>
+                    <DefaultInput 
+                            placeholder="FirstName" 
+                            style={styles.input} 
+                        value={this.state.controls.firstName.value} 
+                        onChangeText={(val) => this.updateInputState('firstName', val)} 
+                        valid={this.state.controls.firstName.valid}
+                        touched={this.state.controls.firstName.touched}
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        />
+
+                        <DefaultInput 
+                            placeholder="LastName" 
+                            style={styles.input} 
+                            value={this.state.controls.lastName.value} 
+                            onChangeText={(val) => this.updateInputState('lastName', val)}
+                            valid={this.state.controls.lastName.valid}
+                            touched={this.state.controls.lastName.touched}
+                        />
+                </View>
+            )
+
             confirmPasswordControl = (
                 <View style={this.state.viewMode === "portrait" ? styles.portraitPasswordWrapper : styles.landscapePasswordWrapper}>
                         <DefaultInput 
@@ -170,6 +220,7 @@ class AuthScreen extends Component {
                 <ButtonBackground color="#29aaf4" onPress={this.switchAuthModeHandler}>Switch To {this.state.authMode === 'login' ? "Sign Up": "Login"}</ButtonBackground>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.inputContainer}>
+                {nameControl}
                     <DefaultInput 
                         placeholder="Your E-mail Adress" 
                         style={styles.input} 

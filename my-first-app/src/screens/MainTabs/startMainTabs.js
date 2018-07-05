@@ -11,6 +11,21 @@ const startTabs = () => {
         Navigation.startTabBasedApp({
             tabs: [
                 {
+                    screen: "awesome-places.FindRoadTrip",
+                    label: "Find RoadTrip",
+                    title: "Find Trip",
+                    icon: sources[0],
+                    navigatorButtons: {
+                        leftButtons: [
+                            {
+                                icon: sources[2],
+                                title: "Menu",
+                                id: "sideDrawerToggle"
+                            }
+                        ]
+                    }
+                },
+                {
                     screen: "awesome-places.FindPlaceScreen",
                     label: "Find Place",
                     title: "Find Place",
