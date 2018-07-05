@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\alexa\\Desktop\\Lab\\react-native-practical\\my-first-app\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bn\\values-bn.xml",
+            "outputFile": "C:\\Users\\anthony\\Desktop\\Lab\\react-native-practical\\my-first-app\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bn\\values-bn.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\alexa\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-10.0.1.aar\\381bb182f77d09b54820c1e9994c7d1e\\res\\values-bn\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "285",
-                        "endColumns": "210",
-                        "endOffsets": "495"
-                    },
-                    "to": {
-                        "startLines": "9",
-                        "startColumns": "4",
-                        "startOffsets": "1103",
-                        "endColumns": "210",
-                        "endOffsets": "1309"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\alexa\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-10.0.1.aar\\d3cb6189b0c3449aa5a62f921d35f282\\res\\values-bn\\values.xml",
+                    "source": "C:\\Users\\anthony\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-10.0.1.aar\\f7de956650d493a3fc24217f3fb1729f\\res\\values-bn\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -35,6 +18,23 @@
                         "startOffsets": "105,216,407,537,650,846,970,1314,1518,1629,1816,1946,2139,2318,2408,2504",
                         "endColumns": "110,190,129,112,195,123,132,203,110,186,129,192,178,89,95,117",
                         "endOffsets": "211,402,532,645,841,965,1098,1513,1624,1811,1941,2134,2313,2403,2499,2617"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\anthony\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-10.0.1.aar\\b02c4d1afae0f59e28d261216a9c9ce2\\res\\values-bn\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "285",
+                        "endColumns": "210",
+                        "endOffsets": "495"
+                    },
+                    "to": {
+                        "startLines": "9",
+                        "startColumns": "4",
+                        "startOffsets": "1103",
+                        "endColumns": "210",
+                        "endOffsets": "1309"
                     }
                 }
             ]

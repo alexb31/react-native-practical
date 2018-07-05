@@ -7,11 +7,12 @@ export const tryAuth = (authData, authMode) => {
     dispatch(uiStartLoading());
     const apiKey = "AIzaSyCidD0kzuH9NQVQ7nMAaPCP5DJS2dBlwNI";
     let url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=" + apiKey;
+    let apiUrl = "http://10.0.2.2:8000/app_dev.php/v1/api/user";
       if (authMode === "signup") {
         url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=" + apiKey;
       }
       fetch(
-        url,
+        apiUrl,
         {
           method: "POST",
           body: JSON.stringify({
