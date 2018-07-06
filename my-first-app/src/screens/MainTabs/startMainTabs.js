@@ -13,7 +13,7 @@ const startTabs = () => {
                 {
                     screen: "awesome-places.FindRoadTrip",
                     label: "Find RoadTrip",
-                    title: "Find Trip",
+                    title: "Find A Trip",
                     icon: sources[0],
                     navigatorButtons: {
                         leftButtons: [

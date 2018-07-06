@@ -61,7 +61,7 @@ class FindRoadTripScreen extends Component {
         return place.key === key;
       });
       this.props.navigator.push({
-        screen: "awesome-places.PlaceDetailScreen",
+        screen: "awesome-places.RoadTripDetailScreen",
         title: selPlace.name,
         passProps: {
           selectedPlace: selPlace
@@ -86,7 +86,7 @@ class FindRoadTripScreen extends Component {
         >
           <TouchableOpacity onPress={this.placesSearchHandler}>
             <View style={styles.searchButton}>
-              <Text style={styles.searchButtonText}>Find Places</Text>
+              <Text style={styles.searchButtonText}>Find RoadTrip</Text>
             </View>
           </TouchableOpacity>
         </Animated.View>

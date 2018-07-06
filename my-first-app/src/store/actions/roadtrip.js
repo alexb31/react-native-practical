@@ -6,10 +6,10 @@ export const getRoadtrips = () => {
     return (dispatch, getState) => {
         const token = getState().auth.token;
         console.log('testing');
-        if (!token) {
-            return;
-        }
-        fetch("http://10.0.2.2:8000/app_dev.php/v1/api/roadtrip")
+        // if (!token) {
+        //     return;
+        // }
+        fetch("http://10.0.2.2:8000/app_dev.php/v1/api/user")
         .catch(err => {
             alert("Something went wrong, sorry :/");
             console.log(err);
@@ -17,19 +17,17 @@ export const getRoadtrips = () => {
         .then(res => res.json())
         .then(parsedRes => {
           console.log("success");
-          console.log("parsedRes: " + parsedRes)
-            const roadTrip = [4];
-            for (let key in parsedRes) {
-              roadTrip.push({
-                    ...roadTrip,
-                    // image: {
-                    //     uri: parsedRes[key].image
-                    // },
-                    key: key
-                })
-            }
-            console.log(roadTrip);
-            dispatch(setRoadtrip(roadTrip));
+          console.log(parsedRes);
+          const roadTrip = [];
+          for (let key in parsedRes) {
+            roadTrip.push({
+                ...parsedRes[key],
+                key: key
+            })
+            console.log(parsedRes[key]); 
+        }
+        console.log(roadTrip);
+        dispatch(setRoadtrip(roadTrip));
         })
         .catch(err => {
             alert("Something Went Wrong, sorry");

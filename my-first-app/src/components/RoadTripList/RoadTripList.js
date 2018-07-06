@@ -7,15 +7,15 @@ const RoadTripList = props => {
     return (
     <FlatList
     style={styles.listContainer}
-        data={props.roadtrips}
+        data="{props.roadtrips}"
         renderItem={(info) => (
-    <RoadTripItem
-        placeName={info.item.name}
-        placeImage={info.item.image}
-        onItemPressed={() => props.onItemSelected(info.item.key)}
+            <RoadTripItem
+            placeName="{info.item.name}"
+            // placeImage={info.item.image}
+            onItemPressed={() => props.onItemSelected(info.item.key)}
+            />
+        )}
         />
-    )}
-    />
     );
 };
 
