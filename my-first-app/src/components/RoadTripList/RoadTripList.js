@@ -1,21 +1,21 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, FlatList, Image } from 'react-native';
 
-import RoadTripItem from '../RoadTripItem/RoadTripItem';
+import ListItem from '../ListItem/ListItem';
 
-const RoadTripList = props => {
+const placeList = props => {
     return (
     <FlatList
     style={styles.listContainer}
-        data="{props.roadtrips}"
+        data={props.roadTrips}
         renderItem={(info) => (
-            <RoadTripItem
-            placeName="{info.item.name}"
-            // placeImage={info.item.image}
-            onItemPressed={() => props.onItemSelected(info.item.key)}
-            />
-        )}
+    <ListItem
+        placeName={info.item.description}
+        // placeImage={info.item.image}
+        onItemPressed={() => props.onItemSelected(info.item.key)}
         />
+    )}
+    />
     );
 };
 
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default RoadTripList;
+export default placeList;

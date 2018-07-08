@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native';
 import { connect } from 'react-redux';
 
-import RoadTripList from '../../components/RoadTripList/RoadTripList';
+// import PlaceList from '../../components/PlaceList/PlaceList';
+import PlaceList from '../../components/RoadTripList/RoadTripList';
 import { getRoadtrips } from "../../store/actions/index";
 
 class FindRoadTripScreen extends Component {
@@ -57,16 +58,17 @@ class FindRoadTripScreen extends Component {
     };
   
     itemSelectedHandler = key => {
-      const selPlace = this.props.places.find(place => {
+      const selRoadTrip = this.props.roadTrips.find(place => {
         return place.key === key;
       });
       this.props.navigator.push({
         screen: "awesome-places.RoadTripDetailScreen",
-        title: selPlace.name,
+        title: selRoadTrip.title,
         passProps: {
-          selectedPlace: selPlace
+          selectedRoadTrip: selRoadTrip
         }
       });
+      console.log("selPlace: " + selRoadTrip);
     };
   
     render() {
@@ -86,7 +88,7 @@ class FindRoadTripScreen extends Component {
         >
           <TouchableOpacity onPress={this.placesSearchHandler}>
             <View style={styles.searchButton}>
-              <Text style={styles.searchButtonText}>Find RoadTrip</Text>
+              <Text style={styles.searchButtonText}>Find Places</Text>
             </View>
           </TouchableOpacity>
         </Animated.View>
@@ -98,8 +100,8 @@ class FindRoadTripScreen extends Component {
               opacity: this.state.placesAnim
             }}
           >
-            <RoadTripList
-              places={this.props.roadtrips}
+            <PlaceList
+              roadTrips={this.props.roadTrips}
               onItemSelected={this.itemSelectedHandler}
             />
           </Animated.View>
@@ -134,7 +136,7 @@ class FindRoadTripScreen extends Component {
   
   const mapStateToProps = state => {
     return {
-      places: state.places.places
+      roadTrips: state.roadTrips.roadTrips
     };
   };
 
@@ -143,5 +145,7 @@ class FindRoadTripScreen extends Component {
       onLoadPlaces: () => dispatch(getRoadtrips())
     };
   };
+  
+  console.log("mapStateToProps: " + mapStateToProps)
   
   export default connect(mapStateToProps, mapDispatchToProps)(FindRoadTripScreen);
