@@ -5,20 +5,27 @@ import { uiStartLoading, uiStopLoading } from './index';
 export const getRoadtrips = () => {
     return (dispatch, getState) => {
         const token = getState().auth.token;
-        console.log(token);
         console.log('testing');
-        // if (!token) {
-        //     return;
-        // }
-        fetch("http://10.0.2.2:8000/app_dev.php/v1/api/roadtrip")
+        if (!token) {
+            return;
+        }
+        console.log("TOKEN: " +token);
+        fetch("http://10.0.2.2:8000/app_dev.php/v1/api/user", {
+            method: 'GET',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+this.token, 
+            }
+          })
         .catch(err => {
-            alert("Something went wrong, sorry :/");
+            alert("PERDU HAHA");
             console.log(err);
             dispatch(uiStopLoading());
         })
         .then(res => res.json())
         .then(parsedRes => {
-          console.log("success");
+          console.log("success !!!!!");
           console.log(parsedRes);
           const roadTrips = [];
           for (let key in parsedRes) {
@@ -34,7 +41,7 @@ export const getRoadtrips = () => {
         console.log(setRoadtrips(roadTrips));
         })
         .catch(err => {
-            alert("Something Went Wrong, sorry");
+            alert("ENCULE DE TOKEN: " + token);
             console.log(err);
         })
     };

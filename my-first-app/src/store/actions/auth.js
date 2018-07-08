@@ -3,9 +3,8 @@ import { uiStartLoading, uiStopLoading} from './index';
 import startMainTabs from "../../screens/MainTabs/startMainTabs";
 
 export const tryAuth = (authData, authMode) => {
-  return (dispatch, getState) => {
+  return dispatch => {
     dispatch(uiStartLoading());
-    const token = getState().auth.token;
     const apiKey = "AIzaSyCidD0kzuH9NQVQ7nMAaPCP5DJS2dBlwNI";
     let url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=" + apiKey;
     let apiUrl = "http://10.0.2.2:8000/app_dev.php/v1/api/login_check";
@@ -17,14 +16,15 @@ export const tryAuth = (authData, authMode) => {
         {
           method: "POST",
           body: JSON.stringify({
-            email: authData._username,
-            password: authData._password,
+            _username: authData.email,
+            _password: authData.password,
             // firstName: authData.firstName,
             // lastName: authData.lastName,
             returnSecureToken: true
           }),
           headers: {
-            "Content-Type": "application/json"
+            'Accept': 'application/json',
+            "Content-Type": "application/json",
           }
         }
       )
@@ -37,7 +37,6 @@ export const tryAuth = (authData, authMode) => {
         .then(res => res.json())
         .then(parsedRes => {
           console.log('successssss');
-          console.log("token: " +token);
           console.log(parsedRes);
           dispatch(uiStopLoading());
           if (!parsedRes.token) {

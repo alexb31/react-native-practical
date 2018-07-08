@@ -49,7 +49,7 @@ export const getPlaces = () => {
         if (!token) {
             return;
         }
-        fetch("https://awesome-places-3e57b.firebaseio.com/places.json?auth=" + token)
+        fetch("https://awesome-places-3e57b.firebaseio.com/places.json")
         .catch(err => {
             alert("Something went wrong, sorry :/");
             console.log(err);

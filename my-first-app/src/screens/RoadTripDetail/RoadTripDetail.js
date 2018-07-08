@@ -77,7 +77,7 @@ class RoadTripDetail extends Component {
         <View style={styles.subContainer}>
           <View>
             <Text style={styles.placeName}>
-              {this.props.selectedRoadTrip.created_at}
+              {this.props.selectedRoadTrip.description}
               {/* {this.props.selectedRoadTrip.owned.map(function(owned) {
                 return owned['title'];
               })} */}

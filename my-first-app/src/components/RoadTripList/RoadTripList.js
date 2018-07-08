@@ -10,7 +10,7 @@ const placeList = props => {
         data={props.roadTrips}
         renderItem={(info) => (
     <ListItem
-        placeName={info.item.description}
+        placeName={info.item.title}
         // placeImage={info.item.image}
         onItemPressed={() => props.onItemSelected(info.item.key)}
         />
