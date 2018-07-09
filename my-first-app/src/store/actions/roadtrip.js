@@ -19,7 +19,10 @@ export const getRoadtrips = () => {
             .catch(() => {
                 alert("No Valid Token Found :/");
             })
-            .then(res => res.json())
+            .then(res=> {
+                console.log(JSON.parse(res));
+                return res.json()
+            })
             .then(parsedRes => {
                 console.log("success !!!!!");
                 // console.log("RAAAAHHH : " +token);
