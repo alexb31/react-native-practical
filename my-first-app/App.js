@@ -19,10 +19,10 @@ Navigation.registerComponent("awesome-places.FindRoadTrip", () => FindRoadTrip, 
 Navigation.registerComponent("awesome-places.FindPlaceScreen", () => FindPlaceScreen, store, Provider);
 Navigation.registerComponent("awesome-places.PlaceDetailScreen", () => PlaceDetailScreen, store, Provider );
 Navigation.registerComponent("awesome-places.RoadTripDetailScreen", () => RoadTripDetailScreen, store, Provider );
-Navigation.registerComponent("awesome-places.SideDrawer", () => SideDrawer);
+Navigation.registerComponent("awesome-places.SideDrawer", () => SideDrawer, store, Provider);
 
 // Start a App
-Navigation.startSingleScreenApp({
+export default () => Navigation.startSingleScreenApp({
   screen: {
     screen: "awesome-places.AuthScreen",
     title: "Login"

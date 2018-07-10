@@ -1,4 +1,4 @@
 export { addPlace, deletePlace, getPlaces } from './places';
 export { getRoadtrips } from './roadtrip';
-export { tryAuth, authGetToken } from './auth';
+export { tryAuth, authGetToken, authAutoSignIn, authLogout } from './auth';
 export { uiStartLoading, uiStopLoading } from './ui';

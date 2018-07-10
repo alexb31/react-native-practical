@@ -1,8 +1,9 @@
 import { AsyncStorage } from 'react-native';
 
-import { TRY_AUTH, AUTH_SET_TOKEN } from './actionTypes';
+import { TRY_AUTH, AUTH_SET_TOKEN, AUTH_REMOVE_TOKEN } from './actionTypes';
 import { uiStartLoading, uiStopLoading} from './index';
 import startMainTabs from "../../screens/MainTabs/startMainTabs";
+import App from '../../../App';
 
 export const tryAuth = (authData, authMode) => {
   return dispatch => {
@@ -74,14 +75,53 @@ export const authGetToken = () => {
         AsyncStorage.getItem("ap:auth:token")
           .catch(err => reject())
           .then(tokenFromStorage => {
-            dispatch(authSetToken(tokenFromStorage));
-            resolve(tokenFromStorage);
+            if (!tokenFromStorage) {
+              reject();
+              return;
+            }
+              dispatch(authSetToken(tokenFromStorage));
+              resolve(tokenFromStorage);
           });
       } else {
         console.log("TOKEN: " +token);
         resolve(token);
       }
     });
+    promise.catch(err => {
+      dispatch(authClearStorage()); 
+    });
     return promise;
   };
+};
+
+export const authAutoSignIn = () => {
+  return dispatch => {
+    dispatch(authGetToken())
+    .then(token => {
+      startMainTabs();
+    })
+    .catch(err => console.log("Failed to fetch token"));
+  };
+};
+
+export const authClearStorage = () => {
+  return dispatch => {
+   return AsyncStorage.removeItem("ap:auth:token");
+  }
+}
+
+export const authLogout = () => {
+  return dispatch => {
+    dispatch(authClearStorage())
+      .then(() => {
+        App();
+      });
+    dispatch(authRemoveToken());
+  };
+};
+
+export const authRemoveToken = () => {
+  return {
+    type: AUTH_REMOVE_TOKEN
+  }
 };

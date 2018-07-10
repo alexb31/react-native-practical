@@ -1,5 +1,5 @@
 import { SET_PLACES, REMOVE_PLACE } from './actionTypes';
-import { uiStartLoading, uiStopLoading } from './index';
+import { uiStartLoading, uiStopLoading, authGetToken } from './index';
 
 export const addPlace = (placeName, location, image) => {
     return dispatch => {
@@ -56,6 +56,7 @@ export const getPlaces = () => {
         })
         .then(res => res.json())
         .then(parsedRes => {
+            console.log("YEAH");
             const places = [];
             for (let key in parsedRes) {
                 places.push({
@@ -67,8 +68,10 @@ export const getPlaces = () => {
                 })
             }
             dispatch(setPlaces(places));
+            console.log(dispatch(setPlaces(places)));
         })
         .catch(err => {
+            console.log(dispatch(setPlaces(places)));
             alert("Somethiong Went Wrong, sorry");
             console.log(err);
         })
