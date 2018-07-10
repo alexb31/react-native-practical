@@ -13,32 +13,38 @@ import validate from '../../utility/validation';
 class SharePlaceScreen extends Component {
     static navigatorStyle = {
         navBarButtonColor: "orange"
-    }
-    
-    state = {
-        controls: {
-            placeName: {
-                value: "",
-                valid: false,
-                touched: false,
-                validationRules: {
-                    notEmpty: true
-                }
-            },
-            location: {
-                value: null,
-                valid: false 
-            },
-            image: {
-                value: null,
-                valid: false
-            }
-        }
-    }
+    };
 
     constructor(props) {
         super(props);
         this.props.navigator.setOnNavigatorEvent(this.OnNavigatorEvent);
+    }
+
+    componentWillMount() {
+        this.reset();
+    }
+
+    reset = () => {
+        this.setState({
+            controls: {
+                placeName: {
+                    value: "",
+                    valid: false,
+                    touched: false,
+                    validationRules: {
+                        notEmpty: true
+                    }
+                },
+                location: {
+                    value: null,
+                    valid: false 
+                },
+                image: {
+                    value: null,
+                    valid: false
+                }
+            }
+        });
     }
 
     OnNavigatorEvent = event => {
@@ -100,6 +106,9 @@ class SharePlaceScreen extends Component {
           this.state.controls.location.value,
           this.state.controls.image.value
         );
+        this.reset();
+        this.imagePicker.reset();
+        this.locationPicker.reset();
       };
 
     render () {
@@ -119,8 +128,8 @@ class SharePlaceScreen extends Component {
                 <MainText>
                     <HeadingText>Share a Place with us!</HeadingText>
                 </MainText>
-                <PickImage onImagePicked={this.imagePickedHandler}/>
-                <PickLocation onLocationPick={this.locationPickedHandler}/>
+                <PickImage onImagePicked={this.imagePickedHandler} ref={ref => (this.imagePicker = ref)}/>
+                <PickLocation onLocationPick={this.locationPickedHandler} ref={ref => (this.locationPicker = ref)}/>
                 <PlaceInput placeData={this.state.controls.placeName} onChangeText={this.placeNameChangedHandler}/>
                 <View style={styles.button}>
                     {submitButton}
