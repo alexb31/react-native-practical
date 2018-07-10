@@ -7,23 +7,22 @@ export const getRoadtrips = () => {
         dispatch(authGetToken())
         .then(token => {
             return fetch(
-              "http://limitless-springs-83583.herokuapp.com/api/v1/accommodations", {
+              "http://10.0.2.2:8000/app_dev.php/v1/api/roadtrip", {
                 method: 'GET',
                 headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                // 'Authorization': 'Bearer '+token, 
+                'Authorization': 'Bearer '+token, 
                 }
               })
           })
             .catch(() => {
                 alert("No Valid Token Found :/");
             })
-            .then(res => res.json)
+            .then(res => res.json())
             .then(parsedRes => {
                 console.log("success !!!!!");
                 // console.log("RAAAAHHH : " +token);
-                console.log(parsedRes);
                 const roadTrips = [];
                 for (let key in parsedRes) {
                     roadTrips.push({
