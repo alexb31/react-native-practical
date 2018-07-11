@@ -20,7 +20,13 @@ export const addPlace = (placeName, location, image) => {
             console.log(err);
             dispatch(uiStopLoading());
         })
-        .then(res => res.json())
+        .then(res => {
+            if(res.ok) {
+                return res.json();
+            } else {
+                throw (new Error());
+            }
+        })
         .then(parsedRes => {
             const placeData = {
                 name: placeName,
@@ -32,11 +38,13 @@ export const addPlace = (placeName, location, image) => {
                 body: JSON.stringify(placeData)
             })
         })
-        .catch(err => {
-            console.log(err);
-            dispatch(uiStopLoading());
+        .then(res => {
+            if(res.ok) {
+                return res.json();
+            } else {
+                throw (new Error());
+            }
         })
-        .then(res => res.json())
         .then(parsedRes => {
             console.log(parsedRes);
             dispatch(uiStopLoading());
@@ -67,9 +75,14 @@ export const getPlaces = () => {
             alert("Something went wrong, sorry :/");
             console.log(err);
         })
-        .then(res => res.json())
+        .then(res => {
+            if(res.ok) {
+                return res.json();
+            } else {
+                throw (new Error());
+            }
+        })
         .then(parsedRes => {
-            console.log("YEAH");
             const places = [];
             for (let key in parsedRes) {
                 places.push({
