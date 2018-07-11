@@ -36,6 +36,27 @@ class RoadTripDetail extends Component {
     });
   };
 
+  renderStop(stops) {
+    return (
+      this.props.selectedRoadTrip.stops.map((stops) => {
+        return (
+          <Text style={styles.placeName}>
+            <Text style={{ color: '#bb4467' }}> + </Text>
+            {stops['address']}
+          </Text>
+        );
+      })
+  );
+}
+
+renderList() {
+  const stops_list = this.props.selectedRoadTrip;
+  // if (this.state.showIngredients) {
+    return (this.renderStop(stops_list));
+  // }
+  // return (this.renderDirectionList(directions));
+}
+
   placeDeletedHandler = () => {
     this.props.onDeletePlace(this.props.selectedPlace.key);
     this.props.navigator.pop();
@@ -74,10 +95,27 @@ class RoadTripDetail extends Component {
             </MapView>
           </View>
         </View> */}
+        <View>
+          <Text>Description: </Text> 
+          <Text style={styles.placeName}>
+          {this.props.selectedRoadTrip.description}
+        </Text>
+        </View>
+
+        <View>
+          <Text>Etapes: </Text> 
+          <Text style={styles.placeName}>
+          { this.renderList() }
+          {this.props.selectedRoadTrip.stops.map(function(stops) {
+            return stops['address'];
+          })
+        }
+        </Text>
+        </View>
+
         <View style={styles.subContainer}>
           <View>
             <Text style={styles.placeName}>
-              {this.props.selectedRoadTrip.description}
               {/* {this.props.selectedRoadTrip.owned.map(function(owned) {
                 return owned['title'];
               })} */}
