@@ -36,30 +36,21 @@ class RoadTripDetail extends Component {
     });
   };
 
-//   renderStop() {
-//     return (
-//       this.props.selectedRoadTrip.stops.map((stops, i) => {
-//           if(stops['address'] == this.props.selectedRoadTrip.stop_start.address) {
-//             console.log("HADOKEN: " +this.props.selectedRoadTrip.stop_start.address);
-//             return (
-//             <Text style={styles.placeName}>
-//             <Text key={i} style={{ color: '#bb4467' }}> Depart:  </Text>
-//             {this.props.selectedRoadTrip.stop_start.address}
-//           </Text>
-//             );
-//           } else {
-//             console.log("GOSHORYUKEN: " +stops['address']);
-//             console.log("GOHADOKEN: " +this.props.selectedRoadTrip.stop_start.address);
-//             return(
-//             <Text style={styles.placeName}>
-//             <Text key={i} style={{ color: '#bb4467' }}> Etapes {i + 1}:  </Text>
-//             {stops['address']}
-//           </Text>
-//             );
-//           }
-//       })
-//   );
-// }
+  renderStop() {
+    return (
+      this.props.selectedRoadTrip.stops.map((stops, i) => {
+            console.log("GOSHORYUKEN: " +stops['address']);
+            console.log("GOHADOKEN: " +this.props.selectedRoadTrip.stop_start.address);
+            return(
+            <Text style={styles.placeName}>
+            <Text key={i} style={{ color: '#bb4467' }}> Etapes {i + 1}:  </Text>
+            {stops['address']}
+          </Text>
+            );
+          }
+        )
+      )
+}
 
    renderStart() {
      return (
@@ -73,13 +64,15 @@ class RoadTripDetail extends Component {
     renderSteps() {
       return (
         this.props.selectedRoadTrip.stops.map((stops, i) => {
-          console.log("GOSHORYUKEN: " +stops['address']);
-          <Text style={styles.placeName}>
-          <Text key={i} style={{ color: '#bb4467' }}> Etape {i + 1}:  </Text>
-          {stops['address']}
-          </Text>
-        })
-      )
+              return(
+              <Text style={styles.placeName}>
+              <Text key={i} style={{ color: '#bb4467' }}> Etape {i + 1}:  </Text>
+              {stops['address']}
+            </Text>
+              );
+            }
+          )
+        )
     }
 
     renderEnd() {
@@ -91,7 +84,7 @@ class RoadTripDetail extends Component {
       );
      }
 
-renderList() {
+renderList(i) {
   const stops_list = this.props.selectedRoadTrip;
   // if (this.state.showIngredients) {
     return (this.renderSteps(stops_list));
@@ -148,12 +141,13 @@ renderList() {
           <Text>Etapes: </Text> 
           <Text style={styles.placeName}>
           {this.renderStart()}
+          {this.renderList().slice(0,-2)}
           {/* this.renderList() */}
           {/*this.props.selectedRoadTrip.stops.map(function(stops) {
             return stops['address'];
           })
         */}
-        {this.renderList()}
+        {console.log(this.renderList().slice(0,-2))}
         {this.renderEnd()}
         </Text>
         </View>
