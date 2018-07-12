@@ -4,6 +4,8 @@ import { uiStartLoading, uiStopLoading, authGetToken } from './index';
 
 export const getRoadtrips = () => {
     return dispatch => {
+        const apiUrl = "http://10.0.2.2:8000/app_dev.php/v1/api/";
+        
         dispatch(authGetToken())
         .then(token => {
             return fetch(

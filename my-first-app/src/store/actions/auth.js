@@ -40,8 +40,10 @@ export const tryAuth = (authData, authMode) => {
         .then(res => {
           if(res.ok) {
               return res.json();
+              console.log(res.json());
           } else {
               throw (new Error());
+              console.log(res.json());
           }
         })
         .then(parsedRes => {
@@ -77,6 +79,9 @@ export const authGetToken = () => {
   return (dispatch, getState) => {
     const promise = new Promise((resolve, reject) => {
       const token = getState().auth.token;
+      // const jwtDecode = require('jwt-decode');
+      // const decoded = jwtDecode(token);
+      //   console.log(getState());
       if (!token) {
         AsyncStorage.getItem("ap:auth:token")
           .catch(err => reject())

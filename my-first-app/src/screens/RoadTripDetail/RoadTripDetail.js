@@ -5,6 +5,7 @@ import {
   Text,
   Button,
   StyleSheet,
+  ScrollView,
   TouchableOpacity,
   FlatList,
   Platform,
@@ -19,7 +20,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 class RoadTripDetail extends Component {
   state = {
     viewMode: "portrait"
-  };
+  }
 
   constructor(props) {
     super(props);
@@ -34,13 +35,29 @@ class RoadTripDetail extends Component {
     this.setState({
       viewMode: dims.window.height > 500 ? "portrait" : "landscape"
     });
-  };
+  }
+
+  renderLocation() {
+    return(
+      this.props.selectedRoadTrip.stops.map((stops) => {
+        console.log("GOSHORYUKEN: " +stops['lat', 'lon']);
+        <MapView
+          initialRegion={{
+            latitude: {stops},
+            longitude: {stops},
+            latitudeDelta: 4,
+            longitudeDelta: 4,
+          }}
+          style={styles.map}
+          />
+          // <MapView.Marker coordinate={stops} />
+      })
+    )
+  }
 
   renderStop() {
     return (
       this.props.selectedRoadTrip.stops.map((stops, i) => {
-            console.log("GOSHORYUKEN: " +stops['address']);
-            console.log("GOHADOKEN: " +this.props.selectedRoadTrip.stop_start.address);
             return(
             <Text style={styles.placeName}>
             <Text key={i} style={{ color: '#bb4467' }}> Etapes {i + 1}:  </Text>
@@ -56,7 +73,7 @@ class RoadTripDetail extends Component {
      return (
       <Text style={styles.placeName}>
           <Text style={{ color: '#bb4467' }}> Depart de:  </Text>
-          {this.props.selectedRoadTrip.stop_start.address}
+          {this.props.selectedRoadTrip.stop_start.address}{"\n"}
       </Text>
      );
     }
@@ -67,7 +84,7 @@ class RoadTripDetail extends Component {
               return(
               <Text style={styles.placeName}>
               <Text key={i} style={{ color: '#bb4467' }}> Etape {i + 1}:  </Text>
-              {stops['address']}
+              {stops['address']}{"\n"}
             </Text>
               );
             }
@@ -79,10 +96,19 @@ class RoadTripDetail extends Component {
       return (
        <Text style={styles.placeName}>
            <Text style={{ color: '#bb4467' }}> Arrivée à:  </Text>
-           {this.props.selectedRoadTrip.stop_end.address}
+           {this.props.selectedRoadTrip.stop_end.address}{"\n"}
        </Text>
       );
      }
+
+    renderDuration() {
+      return (
+        <Text style={styles.placeName}>
+            <Text style={{ color: '#bb4467' }}> {this.props.selectedRoadTrip.duration}  </Text>
+            jours
+        </Text>
+       );
+    }
 
 renderList(i) {
   const stops_list = this.props.selectedRoadTrip;
@@ -99,6 +125,7 @@ renderList(i) {
 
   render() {
     return (
+      <ScrollView>
       <View
         style={[
           styles.container,
@@ -107,48 +134,32 @@ renderList(i) {
             : styles.landscapeContainer
         ]}
       >
-        {/* <View style={styles.placeDetailContainer}>
+        <View style={styles.placeDetailContainer}>
           <View style={styles.subContainer}>
-            <Image
-              source={this.props.selectedPlace.image}
-              style={styles.placeImage}
-            />
+          {this.renderLocation()}
           </View>
-          <View style={styles.subContainer}>
-            <MapView
-              initialRegion={{
-                ...this.props.selectedPlace.location,
-                latitudeDelta: 0.0122,
-                longitudeDelta:
-                  Dimensions.get("window").width /
-                  Dimensions.get("window").height *
-                  0.0122
-              }}
-              style={styles.map}
-            >
-              <MapView.Marker coordinate={this.props.selectedPlace.location} />
-            </MapView>
-          </View>
-        </View> */}
+        </View>
         <View>
-          <Text>Description: </Text> 
+          <Text style={styles.roadTripInfo}>Description: </Text> 
           <Text style={styles.placeName}>
           {this.props.selectedRoadTrip.description}
         </Text>
         </View>
 
         <View>
-          <Text>Etapes: </Text> 
+          <Text style={styles.roadTripInfo}>Etapes: </Text> 
           <Text style={styles.placeName}>
+          {this.renderLocation()}
           {this.renderStart()}
           {this.renderList().slice(0,-2)}
-          {/* this.renderList() */}
-          {/*this.props.selectedRoadTrip.stops.map(function(stops) {
-            return stops['address'];
-          })
-        */}
-        {console.log(this.renderList().slice(0,-2))}
         {this.renderEnd()}
+        </Text>
+        </View>
+
+        <View>
+          <Text style={styles.roadTripInfo}>Durée du Roadtrip: </Text> 
+          <Text style={styles.placeName}>
+          {this.renderDuration()}
         </Text>
         </View>
 
@@ -173,6 +184,7 @@ renderList(i) {
           </View> */}
         </View>
       </View>
+      </ScrollView>
     );
   }
 }
@@ -190,6 +202,11 @@ const styles = StyleSheet.create({
   },
   placeDetailContainer: {
     flex: 2
+  },
+  roadTripInfo: {
+    fontSize: 22,
+    fontWeight: "bold",
+    color: '#bb4467'
   },
   placeImage: {
     width: "100%",
