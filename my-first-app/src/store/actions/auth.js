@@ -21,8 +21,6 @@ export const tryAuth = (authData, authMode) => {
           body: JSON.stringify({
             _username: authData.email,
             _password: authData.password,
-            // firstName: authData.firstName,
-            // lastName: authData.lastName,
             returnSecureToken: true
           }),
           headers: {
@@ -31,18 +29,13 @@ export const tryAuth = (authData, authMode) => {
           }
         }
       )
-        .catch(err => {
-          console.log("shit");
-          console.log("error: " + err);
-          alert("Authentication failed, please try again!");
-          dispatch(uiStopLoading());
-        })
         .then(res => {
           if(res.ok) {
               return res.json();
               console.log(res.json());
           } else {
               throw (new Error());
+              console.log("PERDU");
               console.log(res.json());
           }
         })
@@ -56,12 +49,17 @@ export const tryAuth = (authData, authMode) => {
               dispatch(authStoreToken(parsedRes.token));
               startMainTabs();
           }
-
-        });
+        })
+        .catch(err => {
+          console.log("shit");
+          console.log("error: " + err);
+          alert("Authentication failed, please try again!");
+          dispatch(uiStopLoading());
+        })
   };
 };
 
-export const authStoreToken = token => {
+export const authStoreToken = (token) => {
   return dispatch => {
     dispatch(authSetToken(token));
     AsyncStorage.setItem("ap:auth:token", token);
@@ -81,7 +79,7 @@ export const authGetToken = () => {
       const token = getState().auth.token;
       // const jwtDecode = require('jwt-decode');
       // const decoded = jwtDecode(token);
-      //   console.log(getState());
+        console.log(getState());
       if (!token) {
         AsyncStorage.getItem("ap:auth:token")
           .catch(err => reject())
@@ -118,8 +116,8 @@ export const authAutoSignIn = () => {
 export const authClearStorage = () => {
   return dispatch => {
    return AsyncStorage.removeItem("ap:auth:token");
-  }
-}
+  };
+};
 
 export const authLogout = () => {
   return dispatch => {

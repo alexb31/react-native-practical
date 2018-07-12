@@ -18,9 +18,6 @@ export const getRoadtrips = () => {
                 }
               })
           })
-            .catch(() => {
-                alert("No Valid Token Found :/");
-            })
             .then(res => {
                 if(res.ok) {
                     return res.json();
@@ -50,6 +47,9 @@ export const getRoadtrips = () => {
                 console.log("RAAAAHHH : ");
                 console.log(err);
             })
+            .catch(() => {
+                alert("No Valid Token Found :/");
+            });
     };
 };
 
