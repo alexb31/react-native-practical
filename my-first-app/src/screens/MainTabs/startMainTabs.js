@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const startTabs = () => {
     Promise.all([
+        Icon.getImageSource(Platform.OS === 'android' ? "md-contact" : "ios-contact", 30),
         Icon.getImageSource(Platform.OS === 'android' ? "md-map" : "ios-map", 30),
         Icon.getImageSource(Platform.OS === 'android' ? "md-share-alt" : "ios-share", 30),
         Icon.getImageSource(Platform.OS === 'android' ? "md-menu" : "ios-menu", 30)
@@ -12,13 +13,13 @@ const startTabs = () => {
             tabs: [
                 {
                     screen: "awesome-places.FindRoadTrip",
-                    label: "Find RoadTrip",
-                    title: "Find A Trip",
+                    label: "Mes RoadTrips",
+                    title: "Voir Mes RoadTrips",
                     icon: sources[0],
                     navigatorButtons: {
                         leftButtons: [
                             {
-                                icon: sources[2],
+                                icon: sources[3],
                                 title: "Menu",
                                 id: "sideDrawerToggle"
                             }
@@ -29,11 +30,11 @@ const startTabs = () => {
                     screen: "awesome-places.FindPlaceScreen",
                     label: "Find Place",
                     title: "Find Place",
-                    icon: sources[0],
+                    icon: sources[1],
                     navigatorButtons: {
                         leftButtons: [
                             {
-                                icon: sources[2],
+                                icon: sources[3],
                                 title: "Menu",
                                 id: "sideDrawerToggle"
                             }
@@ -44,11 +45,11 @@ const startTabs = () => {
                     screen: "awesome-places.SharePlaceScreen",
                     label: "Share Place",
                     title: "Share Place",
-                    icon: sources[1],
+                    icon: sources[2],
                     navigatorButtons: {
                         leftButtons: [
                             {
-                                icon: sources[2],
+                                icon: sources[3],
                                 title: "Menu",
                                 id: "sideDrawerToggle"
                             }

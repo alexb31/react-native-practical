@@ -88,7 +88,7 @@ class FindRoadTrip extends Component {
         >
           <TouchableOpacity onPress={this.placesSearchHandler}>
             <View style={styles.searchButton}>
-              <Text style={styles.searchButtonText}>Find Places</Text>
+              <Text style={styles.searchButtonText}>Voir Mes RoadTrips</Text>
             </View>
           </TouchableOpacity>
         </Animated.View>
@@ -122,13 +122,13 @@ class FindRoadTrip extends Component {
       alignItems: "center"
     },
     searchButton: {
-      borderColor: "orange",
+      borderColor: "#2196F3",
       borderWidth: 3,
       borderRadius: 50,
       padding: 20
     },
     searchButtonText: {
-      color: "orange",
+      color: "#2196F3",
       fontWeight: "bold",
       fontSize: 26
     }
