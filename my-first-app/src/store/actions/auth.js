@@ -10,12 +10,13 @@ export const tryAuth = (authData, authMode) => {
     dispatch(uiStartLoading());
     const apiKey = "AIzaSyCidD0kzuH9NQVQ7nMAaPCP5DJS2dBlwNI";
     let url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=" + apiKey;
-    let apiUrl = "http://10.0.2.2:8000/app_dev.php/v1/api/login_check";
+    let apiLocal = "http://10.0.2.2:8000/app_dev.php/v1/api/login_check";
+    let apiProd = "http://roadmontrip.fr/v1/api/login_check";
       if (authMode === "signup") {
         url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=" + apiKey;
       }
       fetch(
-        apiUrl,
+        apiProd,
         {
           method: "POST",
           body: JSON.stringify({
@@ -44,7 +45,7 @@ export const tryAuth = (authData, authMode) => {
           console.log(parsedRes);
           dispatch(uiStopLoading());
           if (!parsedRes.token) {
-              alert("FUK UUUU!");
+              alert("Erreur d'authentification!");
           } else {
               dispatch(authStoreToken(parsedRes.token));
               startMainTabs();
@@ -53,7 +54,7 @@ export const tryAuth = (authData, authMode) => {
         .catch(err => {
           console.log("shit");
           console.log("error: " + err);
-          alert("Authentication failed, please try again!");
+          alert("Erreur d'authentification");
           dispatch(uiStopLoading());
         })
   };
@@ -79,6 +80,7 @@ export const authGetToken = () => {
       const token = getState().auth.token;
       // const jwtDecode = require('jwt-decode');
       // const decoded = jwtDecode(token);
+      // console.log(decoded.username);
         console.log(getState());
       if (!token) {
         AsyncStorage.getItem("ap:auth:token")
@@ -109,7 +111,7 @@ export const authAutoSignIn = () => {
     .then(token => {
       startMainTabs();
     })
-    .catch(err => console.log("Failed to fetch token"));
+    .catch(err => console.log("Erreur de Token"));
   };
 };
 

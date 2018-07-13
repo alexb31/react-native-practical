@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, FlatList, Image } from 'react-native';
+import backgroundImage from "../../assets/roadtrip.jpg";
 
 import ListItem from '../ListItem/ListItem';
 
@@ -11,7 +12,7 @@ const placeList = props => {
         renderItem={(info) => (
     <ListItem
         placeName={info.item.title}
-        // placeImage={info.item.image}
+        placeImage={backgroundImage}
         onItemPressed={() => props.onItemSelected(info.item.key)}
         />
     )}

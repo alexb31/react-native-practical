@@ -90,7 +90,7 @@ class FindPlaceScreen extends Component {
         >
           <TouchableOpacity onPress={this.placesSearchHandler}>
             <View style={styles.searchButton}>
-              <Text style={styles.searchButtonText}>FUK U</Text>
+              <Text style={styles.searchButtonText}>Voir Les Photos Partagées</Text>
             </View>
           </TouchableOpacity>
         </Animated.View>
@@ -124,13 +124,13 @@ class FindPlaceScreen extends Component {
       alignItems: "center"
     },
     searchButton: {
-      borderColor: "orange",
+      borderColor: "#2196F3",
       borderWidth: 3,
       borderRadius: 50,
       padding: 20
     },
     searchButtonText: {
-      color: "orange",
+      color: "#2196F3",
       fontWeight: "bold",
       fontSize: 26
     }

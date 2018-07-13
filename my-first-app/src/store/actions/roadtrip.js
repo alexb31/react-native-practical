@@ -4,12 +4,13 @@ import { uiStartLoading, uiStopLoading, authGetToken } from './index';
 
 export const getRoadtrips = () => {
     return dispatch => {
-        const apiUrl = "http://10.0.2.2:8000/app_dev.php/v1/api/";
+        const apiLocal = "http://10.0.2.2:8000/app_dev.php/v1/api/roadtrip";
+        const apiProd = "http://roadmontrip.fr/v1/api/roadtrip";
         
         dispatch(authGetToken())
         .then(token => {
             return fetch(
-              "http://10.0.2.2:8000/app_dev.php/v1/api/roadtrip", {
+              apiProd, {
                 method: 'GET',
                 headers: {
                 'Accept': 'application/json',
@@ -42,7 +43,7 @@ export const getRoadtrips = () => {
                 console.log(setRoadtrips(roadTrips));
             })
             .catch(err => {
-                alert("ENCULE DE TOKEN: ");
+                alert("Erreur, ");
                 console.log(dispatch(authGetToken()));
                 console.log("RAAAAHHH : ");
                 console.log(err);

@@ -3,7 +3,7 @@ import { View, Text, Button, TextInput, StyleSheet, ImageBackground, Dimensions,
 import DefaultInput from '../../components/UI/DefaultInput/DefaultInput';
 import HeadingText from '../../components/UI/HeadingText/HeadingText';
 import MainText from '../../components/UI/MainText/MainText';
-import backgroundImage from "../../assets/img_lights.jpg";
+import backgroundImage from "../../assets/map2.png";
 import ButtonBackground from "../../components/UI/ButtonBackground/ButtonBackground";
 import headingText from '../../components/UI/HeadingText/HeadingText';
 import validate from '../../utility/validation';
@@ -170,7 +170,7 @@ class AuthScreen extends Component {
         if (this.state.viewMode === "portrait") {
             headingText = (
                 <MainText>
-                    <HeadingText>Please Log In</HeadingText>
+                    <HeadingText>Formulaire de Connexion</HeadingText>
                 </MainText>
             );
         }
@@ -226,7 +226,7 @@ class AuthScreen extends Component {
                 <View style={styles.inputContainer}>
                 {nameControl}
                     <DefaultInput 
-                        placeholder="Your E-mail Adress" 
+                        placeholder="Adresse Email" 
                         style={styles.input} 
                         value={this.state.controls.email.value} 
                         onChangeText={(val) => this.updateInputState('email', val)} 
@@ -239,7 +239,7 @@ class AuthScreen extends Component {
                         <View style={this.state.viewMode === "portrait" || this.state.authMode === "login" ? styles.portraitPasswordContainer : styles.landscapePasswordContainer}>   
                         <View style={this.state.viewMode === "portrait" || this.state.authMode === "login" ? styles.portraitPasswordWrapper : styles.landscapePasswordWrapper}>
                         <DefaultInput
-                            placeholder="Password" 
+                            placeholder="Mot de Passe" 
                             style={styles.input} 
                             value={this.state.controls.password.value} 
                             onChangeText={(val) => this.updateInputState('password', val)}
@@ -273,8 +273,8 @@ const styles = StyleSheet.create({
         width: "80%"
     },
     input: {
-        backgroundColor: "#eee",
-        borderColor: "#bbb"
+        backgroundColor: "#fff",
+        borderColor: "#000"
     },
     landscapePasswordContainer: {
         flexDirection: "row",
