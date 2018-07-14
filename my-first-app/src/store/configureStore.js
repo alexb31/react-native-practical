@@ -11,6 +11,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 const rootReducer = combineReducers({
   places: placesReducer,
   roadTrips: roadTripReducer,
+  roadTripsByUser: roadTripReducer,
   ui: uiReducer,
   auth: authReducer
 });

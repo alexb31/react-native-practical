@@ -1,5 +1,6 @@
 export const SET_PLACES= "SET_PLACES";
 export const SET_ROADTRIPS= "SET_ROADTRIPS";
+export const SET_ROADTRIPS_BY_USER= "SET_ROADTRIPS_BY_USER";
 export const REMOVE_PLACE= "REMOVE_PLACE";
 export const PLACE_ADDED = "PLACE_ADDED";
 export const START_ADD_PLACE = "START_ADD_PLACE";

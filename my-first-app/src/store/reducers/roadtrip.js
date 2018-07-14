@@ -1,7 +1,8 @@
-import { SET_PLACES, SET_ROADTRIPS } from './../actions/actionTypes'
+import { SET_PLACES, SET_ROADTRIPS, SET_ROADTRIPS_BY_USER } from './../actions/actionTypes'
 
 const initialState = {
-  roadTrips: []
+  roadTrips: [],
+  roadTripsByUser: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -10,7 +11,12 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       roadTrips: action.roadTrips
-    }
+    };
+    case SET_ROADTRIPS_BY_USER:
+    return {
+      ...state,
+      roadTripsByUser: action.roadTripsByUser
+    };
     // case REMOVE_PLACE:
     //     return {
     //       ...state,

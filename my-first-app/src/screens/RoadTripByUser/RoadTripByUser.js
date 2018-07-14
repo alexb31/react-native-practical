@@ -3,10 +3,10 @@ import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native
 import { connect } from 'react-redux';
 
 // import PlaceList from '../../components/PlaceList/PlaceList';
-import PlaceList from '../../components/RoadTripList/RoadTripList';
-import { getRoadtrips } from "../../store/actions/index";
+import PlaceList from '../../components/RoadTripByUserList/RoadTripByUserList';
+import { getRoadtripsByUser } from "../../store/actions/index";
 
-class FindRoadTrip extends Component {
+class FindRoadTripByUser extends Component {
     static navigatorStyle = {
       navBarButtonColor: "orange"
     };
@@ -58,7 +58,7 @@ class FindRoadTrip extends Component {
     };
   
     itemSelectedHandler = key => {
-      const selRoadTrip = this.props.roadTrips.find(place => {
+      const selRoadTrip = this.props.roadTripsByUser.find(place => {
         return place.key === key;
       });
       this.props.navigator.push({
@@ -88,7 +88,7 @@ class FindRoadTrip extends Component {
         >
           <TouchableOpacity onPress={this.placesSearchHandler}>
             <View style={styles.searchButton}>
-              <Text style={styles.searchButtonText}>Voir Tous Les RoadTrips</Text>
+              <Text style={styles.searchButtonText}>Voir Mes RoadTrips</Text>
             </View>
           </TouchableOpacity>
         </Animated.View>
@@ -101,7 +101,7 @@ class FindRoadTrip extends Component {
             }}
           >
             <PlaceList
-              roadTrips={this.props.roadTrips}
+              roadTripsByUser={this.props.roadTripsByUser}
               onItemSelected={this.itemSelectedHandler}
             />
           </Animated.View>
@@ -136,16 +136,16 @@ class FindRoadTrip extends Component {
   
   const mapStateToProps = state => {
     return {
-      roadTrips: state.roadTrips.roadTrips
+      roadTripsByUser: state.roadTripsByUser.roadTripsByUser
     };
   };
 
   const mapDispatchToProps = dispatch => {
     return {
-      onLoadPlaces: () => dispatch(getRoadtrips())
+      onLoadPlaces: () => dispatch(getRoadtripsByUser())
     };
   };
   
   console.log("mapStateToProps: " + mapStateToProps)
   
-  export default connect(mapStateToProps, mapDispatchToProps)(FindRoadTrip);
+  export default connect(mapStateToProps, mapDispatchToProps)(FindRoadTripByUser);
