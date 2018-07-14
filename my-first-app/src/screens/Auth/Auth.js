@@ -48,7 +48,7 @@ class AuthScreen extends Component {
                 value: "",
                 valid: false,
                 validationRules: {
-                    minLength: 6
+                    minLength: 3
                 },
                 touched: false
             },
