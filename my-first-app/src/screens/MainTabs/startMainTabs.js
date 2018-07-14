@@ -27,21 +27,6 @@ const startTabs = () => {
                     }
                 },
                 {
-                    screen: "awesome-places.AllRoadTrip",
-                    label: "Tous Les RoadTrips",
-                    title: "Voir Tous Les RoadTrips",
-                    icon: sources[0],
-                    navigatorButtons: {
-                        leftButtons: [
-                            {
-                                icon: sources[3],
-                                title: "Menu",
-                                id: "sideDrawerToggle"
-                            }
-                        ]
-                    }
-                },
-                {
                     screen: "awesome-places.FindPlaceScreen",
                     label: "Find Place",
                     title: "Find Place",

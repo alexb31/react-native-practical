@@ -9,7 +9,6 @@ import RoadTripDetailScreen from './src/screens/RoadTripDetail/RoadTripDetail';
 import FindRoadTrip from './src/screens/RoadTrip/RoadTrip';
 import configureStore from './src/store/configureStore';
 import SideDrawer from './src/screens/SideDrawer/SideDrawer';
-import AllRoadTrip from './src/screens/AllRoadTrip/AllRoadTrip';
 
 const store = configureStore();
 
@@ -17,7 +16,6 @@ const store = configureStore();
 Navigation.registerComponent("awesome-places.AuthScreen", () => AuthScreen, store, Provider);
 Navigation.registerComponent("awesome-places.SharePlaceScreen", () => SharePlaceScreen, store, Provider);
 Navigation.registerComponent("awesome-places.FindRoadTrip", () => FindRoadTrip, store, Provider);
-Navigation.registerComponent("awesome-places.AllRoadTrip", () => AllRoadTrip, store, Provider);
 Navigation.registerComponent("awesome-places.FindPlaceScreen", () => FindPlaceScreen, store, Provider);
 Navigation.registerComponent("awesome-places.PlaceDetailScreen", () => PlaceDetailScreen, store, Provider );
 Navigation.registerComponent("awesome-places.RoadTripDetailScreen", () => RoadTripDetailScreen, store, Provider );

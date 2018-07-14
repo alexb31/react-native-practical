@@ -16,6 +16,15 @@ public class MainActivity extends SplashActivity {
       LinearLayout view = new LinearLayout(this);
       TextView textView = new TextView(this);
 
-      view.setBackgroundColor(Color.parseColor());
+      view.setBackgroundColor(Color.parseColor("#2196F3"));
+      view.setGravity(Gravity.CENTER);
+
+      textView.setTextColor(Color.parseColor("#ffffff"));
+      textView.setText("RoadMonTrip");
+      textView.setGravity(Gravity.CENTER);
+      textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 40);
+
+      view.addView(textView);
+      return view;
   }
 }
