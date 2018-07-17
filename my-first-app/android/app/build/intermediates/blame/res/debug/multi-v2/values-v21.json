@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\alexa\\Desktop\\Lab\\react-native-practical\\my-first-app\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
+            "outputFile": "C:\\Users\\alexa\\Desktop\\Lab\\react-native-roadtrip\\my-first-app\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
             "map": [
                 {
                     "source": "C:\\Users\\alexa\\.gradle\\caches\\transforms-1\\files-1.1\\design-25.3.1.aar\\95b977c19693a7a1a8dc2b7dbcf6058a\\res\\values-v21\\values-v21.xml",
