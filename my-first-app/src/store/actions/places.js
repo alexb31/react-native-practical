@@ -1,5 +1,11 @@
-import { SET_PLACES, REMOVE_PLACE } from './actionTypes';
-import { uiStartLoading, uiStopLoading } from './index';
+import { SET_PLACES, REMOVE_PLACE, PLACE_ADDED, START_ADD_PLACE } from './actionTypes';
+import { uiStartLoading, uiStopLoading, authGetToken  } from './index';
+
+export const startAddPlace = () => {
+    return {
+        type: START_ADD_PLACE
+    };
+};
 
 export const addPlace = (placeName, location, image) => {
     return dispatch => {
@@ -14,7 +20,13 @@ export const addPlace = (placeName, location, image) => {
             console.log(err);
             dispatch(uiStopLoading());
         })
-        .then(res => res.json())
+        .then(res => {
+            if(res.ok) {
+                return res.json();
+            } else {
+                throw (new Error());
+            }
+        })
         .then(parsedRes => {
             const placeData = {
                 name: placeName,
@@ -26,14 +38,17 @@ export const addPlace = (placeName, location, image) => {
                 body: JSON.stringify(placeData)
             })
         })
-        .catch(err => {
-            console.log(err);
-            dispatch(uiStopLoading());
+        .then(res => {
+            if(res.ok) {
+                return res.json();
+            } else {
+                throw (new Error());
+            }
         })
-        .then(res => res.json())
         .then(parsedRes => {
             console.log(parsedRes);
             dispatch(uiStopLoading());
+            dispatch(placeAdded());
         })
         .catch(err => {
             console.log(err);
@@ -43,18 +58,30 @@ export const addPlace = (placeName, location, image) => {
     };
 };
 
+export const placeAdded = () => {
+    return {
+        type: PLACE_ADDED
+    };
+};
+
 export const getPlaces = () => {
     return (dispatch, getState) => {
         const token = getState().auth.token;
         if (!token) {
             return;
         }
-        fetch("https://awesome-places-3e57b.firebaseio.com/places.json?auth=" + token)
+        fetch("https://awesome-places-3e57b.firebaseio.com/places.json")
         .catch(err => {
             alert("Something went wrong, sorry :/");
             console.log(err);
         })
-        .then(res => res.json())
+        .then(res => {
+            if(res.ok) {
+                return res.json();
+            } else {
+                throw (new Error());
+            }
+        })
         .then(parsedRes => {
             const places = [];
             for (let key in parsedRes) {
@@ -67,8 +94,10 @@ export const getPlaces = () => {
                 })
             }
             dispatch(setPlaces(places));
+            console.log(dispatch(setPlaces(places)));
         })
         .catch(err => {
+            console.log(dispatch(setPlaces(places)));
             alert("Somethiong Went Wrong, sorry");
             console.log(err);
         })

@@ -80,7 +80,7 @@ class PlaceDetail extends Component {
             </Text>
           </View>
           <View>
-            <TouchableOpacity onPress={this.placeDeletedHandler}>
+            {/* <TouchableOpacity onPress={this.placeDeletedHandler}>
               <View style={styles.deleteButton}>
                 <Icon
                   size={30}
@@ -88,7 +88,7 @@ class PlaceDetail extends Component {
                   color="red"
                 />
               </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </View>
       </View>

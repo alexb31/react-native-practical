@@ -2,18 +2,25 @@ import React, {Component} from 'react';
 import { View, Image, Button, Text, Dimensions, StyleSheet } from 'react-native';
 import MapView from "react-native-maps";
 class PickLocation extends Component {
-    state = {
-        focusedLocation: {
-          latitude: 48.856614,
-          longitude: 2.3522219000000177,
-          latitudeDelta: 0.0122,
-          longitudeDelta:
-            Dimensions.get("window").width /
-            Dimensions.get("window").height *
-            0.0122
-        },
-        locationChosen: false
-      };
+
+    componentWillMount() {
+        this.reset();
+    }
+
+      reset = () => {
+          this.setState({
+            focusedLocation: {
+                latitude: 48.856614,
+                longitude: 2.3522219000000177,
+                latitudeDelta: 0.0122,
+                longitudeDelta:
+                  Dimensions.get("window").width /
+                  Dimensions.get("window").height *
+                  0.0122
+              },
+              locationChosen: false
+          });
+      }
 
       pickLocationHandler = event => {
         const coords = event.nativeEvent.coordinate;
@@ -67,6 +74,7 @@ class PickLocation extends Component {
             <View style={styles.container}>
                 <MapView
                     initialRegion={this.state.focusedLocation}
+                    region={!this.state.locationChosen ? this.state.focusedLocation : null}
                     style={styles.map}
                     onPress={this.pickLocationHandler}
                     ref={ref => this.map = ref}
@@ -74,7 +82,7 @@ class PickLocation extends Component {
                     {marker}
                 </MapView>
                 <View style={styles.button}>
-                <Button title="Locate Me" onPress={this.getLocationHandler}/>
+                <Button title="Me Localiser" onPress={this.getLocationHandler}/>
                 </View>
             </View>
         );
