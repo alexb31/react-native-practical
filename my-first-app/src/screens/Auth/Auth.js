@@ -163,7 +163,7 @@ class AuthScreen extends Component {
                      || !this.state.controls.password.valid
                  }
                  >
-                 Submit
+                 Se Connecter
                  </ButtonBackground>
         );
 
@@ -221,7 +221,7 @@ class AuthScreen extends Component {
             <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
             <KeyboardAvoidingView style={styles.container} behavior="padding">
             {headingText}
-                <ButtonBackground color="#29aaf4" onPress={this.switchAuthModeHandler}>Switch To {this.state.authMode === 'login' ? "Sign Up": "Login"}</ButtonBackground>
+                {/* <ButtonBackground color="#29aaf4" onPress={this.switchAuthModeHandler}>Switch To {this.state.authMode === 'login' ? "Sign Up": "Login"}</ButtonBackground> */}
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.inputContainer}>
                 {nameControl}
