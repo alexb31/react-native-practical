@@ -8,13 +8,8 @@ import App from '../../../App';
 export const tryAuth = (authData, authMode) => {
   return dispatch => {
     dispatch(uiStartLoading());
-    const apiKey = "AIzaSyCidD0kzuH9NQVQ7nMAaPCP5DJS2dBlwNI";
-    let url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=" + apiKey;
     let apiLocal = "http://10.0.2.2:8000/app_dev.php/v1/api/login_check";
     let apiProd = "http://roadmontrip.fr/v1/api/login_check";
-      if (authMode === "signup") {
-        url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=" + apiKey;
-      }
       fetch(
         apiProd,
         {
@@ -78,9 +73,9 @@ export const authGetToken = () => {
   return (dispatch, getState) => {
     const promise = new Promise((resolve, reject) => {
       const token = getState().auth.token;
-      // const jwtDecode = require('jwt-decode');
-      // const decoded = jwtDecode(token);
-      // console.log(decoded.username);
+      const jwtDecode = require('jwt-decode');
+      const decoded = jwtDecode(token);
+      console.log(decoded);
         console.log(getState());
       if (!token) {
         AsyncStorage.getItem("ap:auth:token")

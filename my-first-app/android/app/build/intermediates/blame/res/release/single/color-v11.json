@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "C:\\Users\\alexa\\Desktop\\Lab\\react-native-practical\\my-first-app\\android\\app\\build\\intermediates\\res\\merged\\release\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
+        "source": "C:\\Users\\alexa\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.3.1.aar\\25b33aebe378cd11f0a898484bb028e7\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "C:\\Users\\alexa\\Desktop\\Lab\\react-native-practical\\my-first-app\\android\\app\\build\\intermediates\\res\\merged\\release\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
+        "source": "C:\\Users\\alexa\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.3.1.aar\\25b33aebe378cd11f0a898484bb028e7\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+    }
+]

@@ -55,14 +55,19 @@ export const getRoadtrips = () => {
 };
 
 export const getRoadtripsByUser = () => {
-    return dispatch => {
-        const apiLocal = "http://10.0.2.2:8000/app_dev.php/v1/api/roadtrip";
-        const apiProd = "http://roadmontrip.fr/v1/api/user/9/roadtrip";
+    return (dispatch, getState) => {
+        const apiLocal = "http://10.0.2.2:8000/app_dev.php/v1/api/user";
+        const apiProd = "http://roadmontrip.fr/v1/api/user";
         
+        const token = getState().auth.token;
+        const jwtDecode = require('jwt-decode');
+        const decoded = jwtDecode(token);
+        const id = decoded.id;
+
         dispatch(authGetToken())
         .then(token => {
             return fetch(
-              apiProd, {
+              `${apiProd}/${id}/roadtrip`, {
                 method: 'GET',
                 headers: {
                 'Accept': 'application/json',

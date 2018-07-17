@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "C:\\Users\\alexa\\Desktop\\Lab\\react-native-practical\\my-first-app\\android\\app\\build\\intermediates\\res\\merged\\release\\xml\\preferences.xml",
+        "source": "C:\\Users\\alexa\\.gradle\\caches\\transforms-1\\files-1.1\\react-native-0.55.4.aar\\f81a210631c8c94fbd94b17156c32b31\\res\\xml\\preferences.xml"
+    },
+    {
+        "merged": "C:\\Users\\alexa\\Desktop\\Lab\\react-native-practical\\my-first-app\\android\\app\\build\\intermediates\\res\\merged\\release\\xml\\provider_paths.xml",
+        "source": "C:\\Users\\alexa\\Desktop\\Lab\\react-native-practical\\my-first-app\\node_modules\\react-native-image-picker\\android\\build\\intermediates\\packaged_res\\release\\xml\\provider_paths.xml"
+    }
+]
