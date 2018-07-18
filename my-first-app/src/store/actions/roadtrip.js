@@ -35,15 +35,13 @@ export const getRoadtrips = () => {
                         ...parsedRes[key],
                         key: key
                     })
-                    // console.log(parsedRes[key]); 
                 }
-                // console.log(roadTrips);
                 dispatch(setRoadtrips(roadTrips));
 
                 console.log(setRoadtrips(roadTrips));
             })
             .catch(err => {
-                alert("Erreur, ");
+                alert("Une Erreur est survenue, veuillez recharger l'application");
                 console.log(dispatch(authGetToken()));
                 console.log("RAAAAHHH : ");
                 console.log(err);
@@ -84,8 +82,6 @@ export const getRoadtripsByUser = () => {
                 }
             })
             .then(parsedRes => {
-                console.log("success USER !!!!!");
-                // console.log("RAAAAHHH : " +token);
                 const roadTripsByUser = [];
                 for (let key in parsedRes) {
                     roadTripsByUser.push({
@@ -100,9 +96,8 @@ export const getRoadtripsByUser = () => {
                 console.log(setRoadtripsByUser(roadTripsByUser));
             })
             .catch(err => {
-                alert("Erreur, ");
+                alert("Erreur, vous n'avez pas encore crée de Roadtrip ");
                 console.log(dispatch(authGetToken()));
-                console.log("RAAAAHHH : ");
                 console.log(err);
             })
             .catch(() => {
